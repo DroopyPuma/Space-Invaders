@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
         //deactivates player on collision with asteroid and tells the gameManger that it died
         if (collision.gameObject.tag == "Asteroid")
         { 
-            rb.velocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
 
             this.gameObject.SetActive(false);
