@@ -27,7 +27,7 @@ public class AsteroidController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
+        // scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
     }
 
     private void Start()
