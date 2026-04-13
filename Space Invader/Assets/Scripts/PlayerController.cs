@@ -1,37 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    private float rotationSpeed = 10f;
-    [SerializeField]
-    private float thrustPower = 10f;
-
+    [SerializeField] private float moveSpeed = 5f;
+    private Vector2 moveInput; 
+    private InputActionMap _inputs;
     private Rigidbody rb;
 
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
-        //allows the player to move in all directions
-        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-        {
-            rb.AddForce(transform.up * thrustPower);
-        }
-        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-        {
-            rb.AddTorque(transform.forward * rotationSpeed);
-        }
-        if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-        {
-            rb.AddTorque(transform.forward * -rotationSpeed);
-        }
+
     }
+
+ 
+    private void FixedUpdate()
+    {
+        rb.linearVelocity = new Vector3(moveInput.x * moveSpeed, rb.linearVelocity.y, rb.linearVelocity.z);
+    }
+
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -43,17 +39,14 @@ public class PlayerController : MonoBehaviour
 
             this.gameObject.SetActive(false);
 
-            //the bad way 
-            FindObjectOfType<GameManager>().PlayerDied();
+     
         }
     }
 
-    public void WrapTopBottom()
-    { 
     
-    }
-    public void WrapLeftRight()
-    { 
-    
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        moveInput = context.ReadValue<Vector2>(); 
     }
 }
