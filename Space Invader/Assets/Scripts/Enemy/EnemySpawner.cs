@@ -7,10 +7,8 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject[] ObjectPrefabs;
     private float timeUntilObjectSpawn;
-    public float objectSpawnTime = 2f;
+    public float objectSpawnTime;
     public float objectSpeed;
-
-    
 
     private void Update()
     {
@@ -36,10 +34,11 @@ public class EnemySpawner : MonoBehaviour
         GameObject objectToSpawn = ObjectPrefabs[Random.Range(0, ObjectPrefabs.Length)];
         Debug.Log("object To spawn " + objectToSpawn);
 
-        GameObject spawnedObject = Instantiate(objectToSpawn, transform.position, Quaternion.identity);
+        //GameObject spawnedObject = Instantiate(objectToSpawn, transform.position, Quaternion.identity);
+        GameObject spawnedObject = Instantiate(objectToSpawn, new Vector3(Random.Range(-10f, 10f),20f,0), Quaternion.identity);
 
-        //Rigidbody2D platformRB = spawnedPlatform.GetComponent<Rigidbody2D>();
-        //platformRB.velocity = Vector2.down * platformSpeed;
+        //  RANDOMIZING THE TIMER 
+        objectSpawnTime = Random.Range(1f, 3f);
     }
 
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AsteroidSpawner : MonoBehaviour
 {
-    public AsteroidController asteroidPrefab;
+    public EnemyController asteroidPrefab;
 
     [SerializeField]
     private float trajectoryVariance = 15.0f;
@@ -36,7 +36,7 @@ public class AsteroidSpawner : MonoBehaviour
             float variance = Random.Range(-this.trajectoryVariance, this.trajectoryVariance);
             Quaternion rotation = Quaternion.AngleAxis(variance, Vector3.forward);
             //giving them a random rotation and size on spawn.
-            AsteroidController asteroid = Instantiate(this.asteroidPrefab, spawnPoint, rotation);
+            EnemyController asteroid = Instantiate(this.asteroidPrefab, spawnPoint, rotation);
             asteroid.size = Random.Range(asteroid.minSize, asteroid.maxSize);
             asteroid.SetTrajectory(rotation * -spawnDirection);
         }

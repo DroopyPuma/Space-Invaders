@@ -19,7 +19,7 @@ public class ScoreManager : MonoBehaviour
         return score;
     }
 
-    public void AsteroidDestroyed(AsteroidController asteroid)
+    public void AsteroidDestroyed(EnemyController asteroid)
     {
         if (asteroid.size < .75f)
         {
