@@ -132,7 +132,7 @@ MonoBehaviour:
   maxSize: 1.5
   speed: 50
   maxLifetime: 30
-  player: {fileID: 0}
+  player: {fileID: 6871406135203048617, guid: ac188789899cf704499b5735b987fa3d, type: 3}
   scoreManager: {fileID: 0}
 --- !u!54 &8616511155524392915
 Rigidbody:
