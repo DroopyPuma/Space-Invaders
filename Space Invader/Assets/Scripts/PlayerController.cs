@@ -6,6 +6,9 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float FireRate = 5f;
+    private float nextFireTime = 0;
+    private int numberOfLives;
 
     [Header("Gun and Bullet References")]
     [SerializeField] private GameObject bullet; //reference to the bullet prefab 
@@ -15,17 +18,20 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveInput; 
     private InputActionMap _inputs;
     private Rigidbody rb;
+    private PlayerData _playerData;
+
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked; // locks the cursor in the middle of the screen when game starts
         Cursor.visible = false; //makes cursor invisible so the crosshair is used, use esc to see cursor again while in game testing 
         rb = GetComponent<Rigidbody>();
+        numberOfLives = _playerData.playerLives;
     }
 
     private void Update()
     {
-
+        Death();
     }
 
  
@@ -40,13 +46,8 @@ public class PlayerController : MonoBehaviour
     {
         //deactivates player on collision with asteroid and tells the gameManger that it died
         if (collision.gameObject.tag == "Asteroid")
-        { 
-            rb.linearVelocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-
-            this.gameObject.SetActive(false);
-
-     
+        {
+            numberOfLives -= 1;
         }
     }
 
@@ -60,8 +61,10 @@ public class PlayerController : MonoBehaviour
     //When the attack button from input action is pressed spawn the bullet game object at predetermined locations 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && Time.time >= nextFireTime)
         {
+            nextFireTime = Time.time + FireRate;
+
             Debug.Log($"bullet: {bullet}, pos1: {bulletSpawnPos1}, pos2: {bulletSpawnPos2}");
 
             if (bullet == null) { Debug.LogError("bullet is null!"); return; }
@@ -70,6 +73,19 @@ public class PlayerController : MonoBehaviour
 
             Instantiate(bullet, bulletSpawnPos1.transform.position, Camera.main.transform.rotation);
             Instantiate(bullet, bulletSpawnPos2.transform.position, Camera.main.transform.rotation);
+
+
         }
     }
+
+    private void Death()
+    {
+        if (numberOfLives == 0)
+        {
+            Destroy(this);
+            Debug.Log("Player has died");
+        }
+    }
+
+    
 }
