@@ -36,10 +36,13 @@ public class BulletController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //Destroies game object on collisionn  with asteroid
-        if (collision.gameObject.tag == "Asteroid")
+        if (collision.gameObject.tag == "Enemy")
         {
+            // play enemy death sounds here 
             Destroy(this.gameObject);
+            Destroy(collision.gameObject);
         }
     }
 
+    
 }
