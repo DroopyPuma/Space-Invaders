@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AdaptivePerformance;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -23,10 +24,12 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        _playerData = new PlayerData();
         Cursor.lockState = CursorLockMode.Locked; // locks the cursor in the middle of the screen when game starts
         Cursor.visible = false; //makes cursor invisible so the crosshair is used, use esc to see cursor again while in game testing 
         rb = GetComponent<Rigidbody>();
         numberOfLives = _playerData.playerLives;
+        Debug.Log($"Life Count: {numberOfLives}");
     }
 
     private void Update()
@@ -82,7 +85,7 @@ public class PlayerController : MonoBehaviour
     {
         if (numberOfLives == 0)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
             Debug.Log("Player has died");
         }
     }
