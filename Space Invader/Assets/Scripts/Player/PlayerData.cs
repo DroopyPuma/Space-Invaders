@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerData 
+public class PlayerData : MonoBehaviour 
 {
     public int playerLives = 3;
 
