@@ -27,18 +27,18 @@ public class AsteroidController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
+        // scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
     }
 
     private void Start()
     {
         
         // randomizes the scale of the asteroids
-        this.transform.localScale = Vector3.one * this.size;
+        //this.transform.localScale = Vector3.one * this.size;
         // randomizes the rotation 
-        this.transform.eulerAngles = new Vector3(0f, 0f, Random.value * 360f);
+        //this.transform.eulerAngles = new Vector3(0f, 0f, Random.value * 360f);
         // matches the mass to the size 
-        rb.mass = this.size;
+        //rb.mass = this.size;
     }
 
     public void SetTrajectory(Vector2 direction)
