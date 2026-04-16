@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AdaptivePerformance;
 using UnityEngine.InputSystem;
@@ -20,6 +21,8 @@ public class PlayerController : MonoBehaviour
     private InputActionMap _inputs;
     private Rigidbody rb;
     private PlayerData _playerData;
+
+   //[Header("Sound References")]
 
 
     void Start()
@@ -42,6 +45,8 @@ public class PlayerController : MonoBehaviour
     {
         // takes the rigidbdy componenet and uses the move vector 2 from the OnMove times the move speed value and applies it to the rigidbody in the form of vector 3 coordinates
         rb.linearVelocity = new Vector3(moveInput.x * moveSpeed, rb.linearVelocity.y, rb.linearVelocity.z);
+
+        // play movement sound here 
     }
 
 
@@ -59,6 +64,7 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>(); 
+        
     }
 
     //When the attack button from input action is pressed spawn the bullet game object at predetermined locations 
@@ -76,7 +82,7 @@ public class PlayerController : MonoBehaviour
 
             Instantiate(bullet, bulletSpawnPos1.transform.position, Camera.main.transform.rotation);
             Instantiate(bullet, bulletSpawnPos2.transform.position, Camera.main.transform.rotation);
-
+            // play shooting sound here 
 
         }
     }
@@ -85,6 +91,7 @@ public class PlayerController : MonoBehaviour
     {
         if (numberOfLives == 0)
         {
+            // play death sound here 
             Destroy(this.gameObject);
             Debug.Log("Player has died");
         }
