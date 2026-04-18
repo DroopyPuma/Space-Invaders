@@ -5,43 +5,63 @@ using UnityEngine.VFX;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject[] ObjectPrefabs;
-    private float timeUntilObjectSpawn;
-    public float objectSpawnTime = 2f;
-    public float objectSpeed;
+    // Array of enemy prefabs to randomly choose from
+    [SerializeField] private GameObject[] objectPrefabs;
 
-    
+    // Timer that counts up until we spawn
+    private float timeUntilObjectSpawn;
+
+    // How often enemies should spawn
+    public float objectSpawnTime = 2f;
+
+    // (Optional) speed value for spawned objects
+    public float objectSpeed;
 
     private void Update()
     {
+        // Run the spawn timer every frame
         spawnLoop();
     }
 
     private void spawnLoop()
     {
+        // Add time every frame
         timeUntilObjectSpawn += Time.deltaTime;
-        // Debug.Log("the time until platform spawn is: " + timeUntilPlatformSpawn);
 
+        // When timer reaches spawn time
         if (timeUntilObjectSpawn >= objectSpawnTime)
         {
-            Spawn();
-            // Debug.Log("the time until platform spawn is in the inside loop is: " + timeUntilPlatformSpawn);
+            // Spawn an enemy
+            SpawnEnemy();
+
+            // Reset timer
             timeUntilObjectSpawn = 0f;
-            // Debug.Log("the time until platform spawn is after the reset: " + timeUntilPlatformSpawn);
         }
     }
 
-    private void Spawn()
+    private void SpawnEnemy()
     {
-        GameObject objectToSpawn = ObjectPrefabs[Random.Range(0, ObjectPrefabs.Length)];
-        Debug.Log("object To spawn " + objectToSpawn);
+        // Pick a random prefab from the array
+        GameObject objectToSpawn = objectPrefabs[Random.Range(0, objectPrefabs.Length)];
 
-        GameObject spawnedObject = Instantiate(objectToSpawn, transform.position, Quaternion.identity);
+        // Create random X position
+        float randomX = Random.Range(-10f, 10f);
 
-        //Rigidbody2D platformRB = spawnedPlatform.GetComponent<Rigidbody2D>();
-        //platformRB.velocity = Vector2.down * platformSpeed;
+        // Keep Y and Z the same as spawner
+        Vector3 spawnPosition = new Vector3(
+            transform.position.x + randomX,
+            transform.position.y,
+            transform.position.z );
+
+        // Spawn enemy at random position
+        GameObject spawnedObject = Instantiate(
+            objectToSpawn,          // prefab to spawn
+            spawnPosition,          // random position
+            Quaternion.identity);   // no rotation
+
+
+        // Print to console to confirm spawn
+        //Debug.Log("Object spawned: " + spawnedObject.name);
     }
-
-
-
 }
+

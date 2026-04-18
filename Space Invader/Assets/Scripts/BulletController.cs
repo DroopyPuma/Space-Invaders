@@ -9,7 +9,7 @@ public class BulletController : MonoBehaviour
     private Rigidbody rb;
     [SerializeField] private float bulletSpeed;
     public float damage;
-    public float lifeTime = 3;
+    private float lifeTime = 3;
     private Vector3 moveDirection; 
 
     private void Start()
