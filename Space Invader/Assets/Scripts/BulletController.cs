@@ -29,11 +29,11 @@ public class BulletController : MonoBehaviour
 
     private void FixedUpdate()
     {
-       moveDirection = Camera.main.transform.forward;
+       moveDirection = transform.up;
         rb.linearVelocity =  moveDirection * bulletSpeed; 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collision collision)
     {
         //Destroies game object on collisionn  with asteroid
         if (collision.gameObject.tag == "Enemy")

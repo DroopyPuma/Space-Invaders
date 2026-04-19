@@ -50,7 +50,7 @@ public class EnemyController : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             // Add score
-            scoreManager.AsteroidDestroyed(this);
+            scoreManager.EnemyDestroyed(this);
 
             // Destroy enemy
             Destroy(gameObject);

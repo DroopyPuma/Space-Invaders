@@ -18,10 +18,10 @@ public class ScoreManager : MonoBehaviour
     }
 
     // Called when enemy is destroyed
-    public void AsteroidDestroyed(EnemyController asteroid)
+    public void EnemyDestroyed(EnemyController enemy)
     {
         // Add the enemy's score value
-        AddScore(asteroid.GetScoreValue());
+        AddScore(enemy.GetScoreValue());
     }
 
     // Adds score

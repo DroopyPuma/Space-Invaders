@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //deactivates player on collision with asteroid and tells the gameManger that it died
-        if (collision.gameObject.tag == "Asteroid")
+        if (collision.gameObject.tag == "Enemy")
         {
             numberOfLives -= 1;
         }
@@ -80,8 +80,11 @@ public class PlayerController : MonoBehaviour
             if (bulletSpawnPos1 == null) { Debug.LogError("bulletSpawnPos1 is null!"); return; }
             if (bulletSpawnPos2 == null) { Debug.LogError("bulletSpawnPos2 is null!"); return; }
 
-            Instantiate(bullet, bulletSpawnPos1.transform.position, Camera.main.transform.rotation);
-            Instantiate(bullet, bulletSpawnPos2.transform.position, Camera.main.transform.rotation);
+            // Instantiate(bullet, bulletSpawnPos1.transform.position, Camera.main.transform.rotation);
+            Instantiate(bullet, bulletSpawnPos1.transform.position, Quaternion.identity);
+
+            // Instantiate(bullet, bulletSpawnPos2.transform.position, Camera.main.transform.rotation);
+            Instantiate(bullet, bulletSpawnPos2.transform.position, Quaternion.identity);
             // play shooting sound here 
 
         }
