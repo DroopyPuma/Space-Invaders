@@ -22,7 +22,9 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private PlayerData _playerData;
 
-   //[Header("Sound References")]
+    [Header("Sound References")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip shootSound;
 
 
     void Start()
@@ -80,12 +82,16 @@ public class PlayerController : MonoBehaviour
             if (bulletSpawnPos1 == null) { Debug.LogError("bulletSpawnPos1 is null!"); return; }
             if (bulletSpawnPos2 == null) { Debug.LogError("bulletSpawnPos2 is null!"); return; }
 
-            // Instantiate(bullet, bulletSpawnPos1.transform.position, Camera.main.transform.rotation);
-            Instantiate(bullet, bulletSpawnPos1.transform.position, Quaternion.identity);
+            GameObject b1 = Instantiate(bullet, bulletSpawnPos1.transform.position, Camera.main.transform.rotation);
+            GameObject b2 = Instantiate(bullet, bulletSpawnPos2.transform.position, Camera.main.transform.rotation);
 
-            // Instantiate(bullet, bulletSpawnPos2.transform.position, Camera.main.transform.rotation);
-            Instantiate(bullet, bulletSpawnPos2.transform.position, Quaternion.identity);
+            b1.GetComponent<BulletController>().SetDirection(Camera.main.transform.forward);
+            b2.GetComponent<BulletController>().SetDirection(Camera.main.transform.forward);
+
+
+
             // play shooting sound here 
+            audioSource.PlayOneShot(shootSound); 
 
         }
     }
