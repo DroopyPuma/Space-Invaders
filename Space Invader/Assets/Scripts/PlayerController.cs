@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     [Header("Sound References")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip shootSound;
+    [SerializeField] private AudioClip moveSound;
 
 
     void Start()
@@ -48,7 +49,7 @@ public class PlayerController : MonoBehaviour
         // takes the rigidbdy componenet and uses the move vector 2 from the OnMove times the move speed value and applies it to the rigidbody in the form of vector 3 coordinates
         rb.linearVelocity = new Vector3(moveInput.x * moveSpeed, rb.linearVelocity.y, rb.linearVelocity.z);
 
-        // play movement sound here 
+        
     }
 
 
@@ -65,8 +66,9 @@ public class PlayerController : MonoBehaviour
     //References the move in the input action map and gets the vector 2 value from the button pressed
     public void OnMove(InputAction.CallbackContext context)
     {
-        moveInput = context.ReadValue<Vector2>(); 
-        
+        moveInput = context.ReadValue<Vector2>();
+        audioSource.PlayOneShot(moveSound);
+
     }
 
     //When the attack button from input action is pressed spawn the bullet game object at predetermined locations 
