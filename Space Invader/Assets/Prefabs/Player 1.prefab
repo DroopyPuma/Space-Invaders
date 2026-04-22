@@ -546,6 +546,9 @@ MonoBehaviour:
   bullet: {fileID: 6084067787310039647, guid: 63381b299fb9de944a4453ff819f68fe, type: 3}
   bulletSpawnPos1: {fileID: 6918392159905374530}
   bulletSpawnPos2: {fileID: 2268879789259249529}
+  audioSource: {fileID: 0}
+  shootSound: {fileID: 0}
+  moveSound: {fileID: 0}
 --- !u!114 &4817473391876434182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -691,7 +694,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

@@ -19,7 +19,6 @@ public class EnemyController : MonoBehaviour
     public GameObject player;
 
     // References the ScoreManager script
-    [SerializeField]
     private ScoreManager scoreManager;
 
     private void Awake()
@@ -44,16 +43,11 @@ public class EnemyController : MonoBehaviour
         Destroy(gameObject, maxLifetime);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        // If hit by bullet
-        if (collision.gameObject.CompareTag("Bullet"))
+        if (other.gameObject.CompareTag("Bullet"))
         {
-            // Add score
             scoreManager.EnemyDestroyed(this);
-
-            // Destroy enemy
-            Destroy(gameObject);
         }
     }
 

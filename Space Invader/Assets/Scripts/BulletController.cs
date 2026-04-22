@@ -33,11 +33,12 @@ public class BulletController : MonoBehaviour
         rb.linearVelocity = moveDirection * bulletSpeed;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Asteroid")
+        if (other.gameObject.tag == "Enemy")
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
+            Destroy(other.gameObject);
         }
     }
 }

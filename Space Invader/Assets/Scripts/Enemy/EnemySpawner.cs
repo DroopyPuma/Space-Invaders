@@ -45,11 +45,11 @@ public class EnemySpawner : MonoBehaviour
         GameObject objectToSpawn = objectPrefabs[Random.Range(0, objectPrefabs.Length)];
 
         // Create random X position
-        float randomX = Random.Range(-10f, 10f);
+        float randomX = Random.Range(-30f, 30f);
 
         // Keep Y and Z the same as spawner
         Vector3 spawnPosition = new Vector3(
-            transform.position.x + randomX,
+            randomX,
             transform.position.y,
             transform.position.z );
 
