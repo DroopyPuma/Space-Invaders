@@ -1,27 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class BulletController : MonoBehaviour
 {
     private Rigidbody rb;
     [SerializeField] private float bulletSpeed;
     public float damage;
-    private float lifeTime = 3;
-    private Vector3 moveDirection; 
+    public float lifeTime;
+
+    private Vector3 moveDirection;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
-    private void Update()
-    { 
-        //puts a timer on the bullet and destroies them once the time is up
-        lifeTime -= Time.deltaTime;
 
-        if (lifeTime <= 0)
+    public void SetDirection(Vector3 direction)
+    {
+        moveDirection = direction;
+    }
+
+    private void Update()
+    {
+        lifeTime -= Time.deltaTime;
+        if (lifeTime < 0)
         {
             Destroy(gameObject);
         }
@@ -29,20 +30,14 @@ public class BulletController : MonoBehaviour
 
     private void FixedUpdate()
     {
-       moveDirection = transform.up;
-        rb.linearVelocity =  moveDirection * bulletSpeed; 
+        rb.linearVelocity = moveDirection * bulletSpeed;
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnCollisionEnter(Collision collision)
     {
-        //Destroies game object on collisionn  with asteroid
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Asteroid")
         {
-            // play enemy death sounds here 
             Destroy(this.gameObject);
-            Destroy(collision.gameObject);
         }
     }
-
-    
 }

@@ -157,3 +157,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BulletController
   bulletSpeed: 100
   damage: 10
+  lifeTime: 5
