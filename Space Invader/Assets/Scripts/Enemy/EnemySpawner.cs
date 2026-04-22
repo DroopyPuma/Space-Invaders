@@ -32,7 +32,7 @@ public class EnemySpawner : MonoBehaviour
         if (timeUntilObjectSpawn >= objectSpawnTime)
         {
             // Spawn an enemy
-            SpawnEnemy();
+            SpawnEnemy(); 
 
             // Reset timer
             timeUntilObjectSpawn = 0f;
