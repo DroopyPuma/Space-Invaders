@@ -49,13 +49,13 @@ public class EnemyController : MonoBehaviour
         // If hit by bullet
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            Debug.Log("Enemy collision ");
+            Debug.Log("Enemy collision");
 
             // Add score
             scoreManager.EnemyDestroyed(this);
             
             // Destroy enemy
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 

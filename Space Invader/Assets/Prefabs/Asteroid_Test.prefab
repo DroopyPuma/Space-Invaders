@@ -108,7 +108,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -127,10 +127,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AsteroidController
   scoreValue: 0
-  size: 1
-  minSize: 0.5
-  maxSize: 1.5
-  speed: 50
   maxLifetime: 30
   player: {fileID: 6590163335380535192, guid: e3f65f3f83a8aee4ab60fcd10dc59d13, type: 3}
   scoreManager: {fileID: 0}

@@ -4,13 +4,16 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AdaptivePerformance;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float FireRate = 5f;
     private float nextFireTime = 0;
+
     private int numberOfLives;
+    [SerializeField] private Slider livesSlider; // UI slider for lives
 
     [Header("Gun and Bullet References")]
     [SerializeField] private GameObject bullet; //reference to the bullet prefab 
@@ -34,6 +37,11 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = false; //makes cursor invisible so the crosshair is used, use esc to see cursor again while in game testing 
         rb = GetComponent<Rigidbody>();
         numberOfLives = _playerData.playerLives;
+
+        livesSlider.maxValue = numberOfLives;
+        livesSlider.value = numberOfLives;
+
+
         Debug.Log($"Life Count: {numberOfLives}");
     }
 
@@ -58,6 +66,9 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             numberOfLives -= 1;
+
+            // update slider
+            livesSlider.value = numberOfLives;
         }
     }
 

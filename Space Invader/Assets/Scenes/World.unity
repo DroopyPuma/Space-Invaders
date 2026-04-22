@@ -814,12 +814,12 @@ GameObject:
   - component: {fileID: 654904497}
   - component: {fileID: 654904498}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Bullet Test
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &654904493
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2251,6 +2251,22 @@ PrefabInstance:
       propertyPath: TiltAxis.Recentering.Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4817473391876434182, guid: e3f65f3f83a8aee4ab60fcd10dc59d13, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4817473391876434182, guid: e3f65f3f83a8aee4ab60fcd10dc59d13, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4817473391876434182, guid: e3f65f3f83a8aee4ab60fcd10dc59d13, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4817473391876434182, guid: e3f65f3f83a8aee4ab60fcd10dc59d13, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5043210454889933854, guid: e3f65f3f83a8aee4ab60fcd10dc59d13, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.92
@@ -2279,6 +2295,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7274953594766429441, guid: e3f65f3f83a8aee4ab60fcd10dc59d13, type: 3}
+      propertyPath: livesSlider
+      value: 
+      objectReference: {fileID: 86646721}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
