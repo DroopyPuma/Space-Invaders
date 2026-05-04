@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour
 {
     // Array of enemy prefabs to randomly choose from
     [SerializeField] private GameObject[] objectPrefabs;
+    [SerializeField] private GameObject Player;
 
     // Timer that counts up until we spawn
     private float timeUntilObjectSpawn;
@@ -16,6 +17,8 @@ public class EnemySpawner : MonoBehaviour
 
     // (Optional) speed value for spawned objects
     public float objectSpeed;
+
+    
 
     private void Update()
     {
@@ -44,14 +47,14 @@ public class EnemySpawner : MonoBehaviour
         // Pick a random prefab from the array
         GameObject objectToSpawn = objectPrefabs[Random.Range(0, objectPrefabs.Length)];
 
-        // Create random X position
-        float randomX = Random.Range(-30f, 30f);
+        //// Create random X position
+        float randomX = Random.Range(-60f, 60f);
 
         // Keep Y and Z the same as spawner
         Vector3 spawnPosition = new Vector3(
-            randomX,
-            transform.position.y,
-            transform.position.z );
+            Player.transform.position.x + randomX,
+            Player.transform.position.y + 200,
+            transform.position.z); 
 
         // Spawn enemy at random position
         GameObject spawnedObject = Instantiate(
