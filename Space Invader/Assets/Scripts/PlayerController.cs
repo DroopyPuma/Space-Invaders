@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private PlayerData _playerData;
 
+    InputSystem_Actions inputSystem_Actions;
+
     [Header("Sound References")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip shootSound;
@@ -45,7 +47,23 @@ public class PlayerController : MonoBehaviour
 
         Debug.Log($"Life Count: {numberOfLives}");
     }
+    /*
+    public void OnEnable()
+    {
+        if (inputSystem_Actions == null)
+        {
+            inputSystem_Actions = new InputSystem_Actions();
 
+            inputSystem_Actions.Player.Move.performed += i => movementInput = i.ReadValue<Vector2>();
+            inputSystem_Actions.Player.Movement.performed += i => cameraInput = i.ReadValue<Vector2>();
+            _inputs.Player.Dodge.performed += instance => dodgeInput = true;
+
+        }
+
+        _inputs.Enable();
+
+    }
+    */
     private void Update()
     {
         Death();
