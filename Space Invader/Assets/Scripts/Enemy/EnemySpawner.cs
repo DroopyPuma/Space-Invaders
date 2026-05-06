@@ -54,7 +54,7 @@ public class EnemySpawner : MonoBehaviour
         Vector3 spawnPosition = new Vector3(
             Player.transform.position.x + randomX,
             Player.transform.position.y + 200,
-            transform.position.z); 
+            Player.transform.position.z); 
 
         // Spawn enemy at random position
         GameObject spawnedObject = Instantiate(

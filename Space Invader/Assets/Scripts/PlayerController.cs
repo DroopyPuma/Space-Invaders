@@ -61,12 +61,14 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         //deactivates player on collision with asteroid and tells the gameManger that it died
         if (collision.gameObject.tag == "Enemy")
         {
             numberOfLives -= 1;
+
+            Debug.Log($"Hit by enemy! Lives remaining: {numberOfLives}");
 
             // update slider
             livesSlider.value = numberOfLives;
