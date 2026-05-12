@@ -43,9 +43,9 @@ public class EnemyController : MonoBehaviour
         Destroy(gameObject, maxLifetime);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Bullet"))
+        if (other.gameObject.CompareTag("Bullet"))
         {
             scoreManager.EnemyDestroyed(this);
         }
