@@ -54,9 +54,11 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         numberOfLives = _playerData.playerLives;
 
-        livesSlider.maxValue = numberOfLives;
-        livesSlider.value = numberOfLives;
-
+        if (livesSlider != null)
+        { 
+            livesSlider.maxValue = numberOfLives;
+            livesSlider.value = numberOfLives;
+        }
 
         Debug.Log($"Life Count: {numberOfLives}");
     }
@@ -64,14 +66,14 @@ public class PlayerController : MonoBehaviour
     {
         inputActions.Player.Enable();
 
-        inputActions.Player.Attack.performed += ctx => attackInput = true;
-        inputActions.Player.Attack.canceled += ctx => attackInput = false;
+        inputActions.Player.Attack.performed += OnAttackPerformed;
+        inputActions.Player.Attack.canceled += OnAttackCanceled;
     }
 
     private void OnDisable()
     {
-        inputActions.Player.Attack.performed -= ctx => attackInput = true;
-        inputActions.Player.Attack.canceled -= ctx => attackInput = false;
+        inputActions.Player.Attack.performed -= OnAttackPerformed;
+        inputActions.Player.Attack.canceled -= OnAttackCanceled;
 
         inputActions.Player.Disable();
     }
@@ -106,11 +108,18 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         // takes the rigidbdy componenet and uses the move vector 2 from the OnMove times the move speed value and applies it to the rigidbody in the form of vector 3 coordinates
-        rb.linearVelocity = new Vector3(moveInput.x * moveSpeed, rb.linearVelocity.y, rb.linearVelocity.z);
-
-        
+        rb.velocity = new Vector3(moveInput.x * moveSpeed, rb.velocity.y, rb.velocity.z);
     }
 
+    private void OnAttackPerformed(InputAction.CallbackContext ctx)
+    {
+        attackInput = true;
+    }
+
+    private void OnAttackCanceled(InputAction.CallbackContext ctx)
+    {
+        attackInput = false;
+    }
 
     private void OnTriggerEnter(Collider collision)
     {
@@ -125,7 +134,6 @@ public class PlayerController : MonoBehaviour
             livesSlider.value = numberOfLives;
         }
     }
-
     
     //References the move in the input action map and gets the vector 2 value from the button pressed
     public void OnMove(InputAction.CallbackContext context)
@@ -138,22 +146,31 @@ public class PlayerController : MonoBehaviour
     //When the attack button from input action is pressed spawn the bullet game object at predetermined locations 
     public void OnAttack()
     {
-        timer = 1f;
+        timer = fireRate;
 
         Debug.Log($"bullet: {bullet}, pos1: {bulletSpawnPos1}, pos2: {bulletSpawnPos2}");
 
-            if (bullet == null) { Debug.LogError("bullet is null!"); return; }
-            if (bulletSpawnPos1 == null) { Debug.LogError("bulletSpawnPos1 is null!"); return; }
-            if (bulletSpawnPos2 == null) { Debug.LogError("bulletSpawnPos2 is null!"); return; }
+        if (bullet == null) { Debug.LogError("bullet is null!"); return; }
+        if (bulletSpawnPos1 == null) { Debug.LogError("bulletSpawnPos1 is null!"); return; }
+        if (bulletSpawnPos2 == null) { Debug.LogError("bulletSpawnPos2 is null!"); return; }
 
-            GameObject b1 = Instantiate(bullet, bulletSpawnPos1.transform.position, Camera.main.transform.rotation);
-            GameObject b2 = Instantiate(bullet, bulletSpawnPos2.transform.position, Camera.main.transform.rotation);
+        GameObject b1 = Instantiate(bullet, bulletSpawnPos1.transform.position, Camera.main.transform.rotation);
+        GameObject b2 = Instantiate(bullet, bulletSpawnPos2.transform.position, Camera.main.transform.rotation);
 
-            b1.GetComponent<BulletController>().SetDirection(Camera.main.transform.forward);
-            b2.GetComponent<BulletController>().SetDirection(Camera.main.transform.forward);
+        BulletController bc1 = b1.GetComponent<BulletController>();
+        BulletController bc2 = b2.GetComponent<BulletController>();
 
-            // play shooting sound here 
-            audioSource.PlayOneShot(shootSound); 
+        if (bc1 != null)
+        {
+            bc1.SetDirection(Camera.main.transform.forward);
+        }
+
+        if (bc2 != null)
+        {
+            bc2.SetDirection(Camera.main.transform.forward);
+        }
+        // play shooting sound here 
+        audioSource.PlayOneShot(shootSound); 
 
         
     }
