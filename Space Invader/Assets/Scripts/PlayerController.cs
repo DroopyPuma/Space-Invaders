@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         // takes the rigidbdy componenet and uses the move vector 2 from the OnMove times the move speed value and applies it to the rigidbody in the form of vector 3 coordinates
-        rb.velocity = new Vector3(moveInput.x * moveSpeed, rb.velocity.y, rb.velocity.z);
+        rb.linearVelocity = new Vector3(moveInput.x * moveSpeed, rb.linearVelocity.y, rb.linearVelocity.z);
     }
 
     private void OnAttackPerformed(InputAction.CallbackContext ctx)
