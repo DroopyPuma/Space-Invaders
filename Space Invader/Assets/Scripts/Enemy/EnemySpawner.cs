@@ -60,7 +60,9 @@ public class EnemySpawner : MonoBehaviour
         GameObject spawnedObject = Instantiate(
             objectToSpawn,          // prefab to spawn
             spawnPosition,          // random position
-            Quaternion.Euler(0, 0, 180));   // enemies look down
+            Quaternion.identity);   // enemies look down
+
+        spawnedObject.transform.forward = Vector3.down;
     }
 }
 
