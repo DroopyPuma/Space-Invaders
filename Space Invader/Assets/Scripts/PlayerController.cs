@@ -182,6 +182,8 @@ public class PlayerController : MonoBehaviour
         {
             // play death sound here 
             Destroy(this.gameObject);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             SceneManager.LoadScene("End Scene");
             Debug.Log("Player has died");
         }
