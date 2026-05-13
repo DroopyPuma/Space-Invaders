@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.AdaptivePerformance;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -181,6 +182,7 @@ public class PlayerController : MonoBehaviour
         {
             // play death sound here 
             Destroy(this.gameObject);
+            SceneManager.LoadScene("End Scene");
             Debug.Log("Player has died");
         }
     }
