@@ -32,12 +32,9 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
-        // Randomize Z rotation
-        transform.eulerAngles = new Vector3(0f, 0f, Random.value * 360f);
-
-        // OPTIONAL: set mass based on scale instead of missing "size"
         rb.mass = transform.localScale.x;
     }
+
     private void OnEnable()
     {
         Destroy(gameObject, maxLifetime);
