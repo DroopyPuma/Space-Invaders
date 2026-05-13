@@ -157,6 +157,7 @@ MonoBehaviour:
   scoreValue: 100
   maxLifetime: 15
   player: {fileID: 6590163335380535192, guid: e3f65f3f83a8aee4ab60fcd10dc59d13, type: 3}
+  explosionPrefab: {fileID: 8655990421889552383, guid: ebbdc4305108cd0419bcbec3ec27d57a, type: 3}
 --- !u!1001 &7649760394261391934
 PrefabInstance:
   m_ObjectHideFlags: 0

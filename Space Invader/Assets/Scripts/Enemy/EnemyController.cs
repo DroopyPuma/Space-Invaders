@@ -21,6 +21,7 @@ public class EnemyController : MonoBehaviour
     // References the ScoreManager script
     private ScoreManager scoreManager;
 
+    public GameObject explosionPrefab;
     private void Awake()
     {
         // Get Rigidbody component
@@ -42,10 +43,17 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Bullet"))
+        if (explosionPrefab != null)
         {
-            scoreManager.EnemyDestroyed(this);
+            Instantiate(
+                explosionPrefab,
+                transform.position,
+                Quaternion.identity);
         }
+
+        scoreManager.EnemyDestroyed(this);
+
+        Destroy(gameObject);
     }
 
     public int GetScoreValue()

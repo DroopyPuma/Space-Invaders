@@ -50,6 +50,7 @@ MonoBehaviour:
   - {fileID: 4000697680494647338, guid: c40167b86d6a5b54a9a0a4ab872925fc, type: 3}
   - {fileID: 9063376406107859095, guid: 65a8482e91bfe8040a9ce5868b2b854c, type: 3}
   - {fileID: 2519796570169650681, guid: 177ff582b0a71eb42bfd8cbb43c81c05, type: 3}
+  - {fileID: 2519796570169650681, guid: 177ff582b0a71eb42bfd8cbb43c81c05, type: 3}
   Player: {fileID: 0}
   objectSpawnTime: 2
   objectSpeed: 0
