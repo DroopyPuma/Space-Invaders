@@ -54,17 +54,13 @@ public class EnemySpawner : MonoBehaviour
         Vector3 spawnPosition = new Vector3(
             Player.transform.position.x + randomX,
             Player.transform.position.y + 200,
-            Player.transform.position.z); 
+            Player.transform.position.z);
 
         // Spawn enemy at random position
         GameObject spawnedObject = Instantiate(
             objectToSpawn,          // prefab to spawn
             spawnPosition,          // random position
-            Quaternion.identity);   // no rotation
-
-
-        // Print to console to confirm spawn
-        //Debug.Log("Object spawned: " + spawnedObject.name);
+            Quaternion.Euler(0, 0, 180));   // enemies look down
     }
 }
 
