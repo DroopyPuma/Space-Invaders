@@ -22,6 +22,8 @@ public class EnemyController : MonoBehaviour
     private ScoreManager scoreManager;
 
     public GameObject explosionPrefab;
+    public AudioClip explosionSound;
+
     private void Awake()
     {
         // Get Rigidbody component
@@ -49,6 +51,8 @@ public class EnemyController : MonoBehaviour
                 explosionPrefab,
                 transform.position,
                 Quaternion.identity);
+
+            AudioSource.PlayClipAtPoint(explosionSound, transform.position);
         }
 
         scoreManager.EnemyDestroyed(this);
